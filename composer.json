@@ -1,0 +1,16 @@
+{
+    "name": "gluemstr1010/dt",
+    "type": "project",
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "nette/tester": "^2.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "gluemstr1010\\": "src/"
+        }
+    }
+}
