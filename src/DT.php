@@ -21,17 +21,14 @@ class DT
 		return $obj;
 	}
 
-	public function assignTimezone(DateTimeZone|string $timezone): self
+	public function setTimezone(DateTimeZone|string|null $timezone = null): self
 	{
-		$tz = $timezone instanceof DateTimeZone ? $timezone : new DateTimeZone($timezone);
-		$capture = $this->format(self::TIMESTAMP_MILLIS); // extends DateTimeImmutable
-
-		return new self($capture, $tz);
+		return parent::setTimezone($tz);
 	}
 
-	public function setTimezone($tz)
+	public function assignTimezone(DateTimeZone|string $timezone): self
 	{
-		$this->timezone = $tz;
+		return new self($capture, $tz);
 	}
 
 	public function areEquals($tz)
