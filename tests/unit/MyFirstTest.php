@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use DateTime;
 use DateTimeZone;
 use gluemstr1010\DT;
 use Tester\Assert;
@@ -19,12 +20,19 @@ class MyFirstTest extends TestCase
 	public function setUp()
 	{
 		parent::setUp();
-		date_default_timezone_set('Europe/Prague');
+
 	}
 
 	public function testInit(): void
 	{
 		Assert::type(DT::class, DT::create('now'));
+	}
+
+	public function testDateTimeZoneSetTimezone(): void
+	{
+		$dt = DT::create('now')->setTimezone( new DateTimeZone('America/New_York') );
+
+		Assert::same('America/New_York', $dt->getTimezone()->getName());
 	}
 
 	/**
@@ -52,7 +60,7 @@ class MyFirstTest extends TestCase
 			[
 				true,
 				DT::create('2020-07-20 15:00:00')->setTimezone(new DateTimeZone('Europe/Prague')),
-				DT::create('2020-07-20 14:00:00')->assignTimezone('Europe/London'),
+				DT::create('2020-07-20 14:00:00')->assignTimezone("Europe/London"),
 			],
 			[
 				true,
